@@ -94,30 +94,32 @@ Searches your library for prompts matching your current context.
 
 Analyzing your conversation...
 
-You explored competitive analysis, iterating through:
-- Initial ask: "who are the competitors"
-- Refined to: feature comparison matrix
-- Added: positioning analysis
-- Final output: strategic recommendations
+You explored code review, iterating through:
+- Initial ask: "review this PR"
+- Added: security focus
+- Refined: severity levels for issues
+- Added: summary with recommended action
 
 Here's your distilled prompt:
 
 ---
-Analyze the competitive landscape for [PRODUCT] in [MARKET].
+Review [CODE/PR] with focus on:
 
-Structure:
-1. Direct competitors (same solution, same customer)
-2. Indirect competitors (different solution, same problem)
-3. Feature comparison matrix
-4. Positioning map (2x2)
-5. Strategic implications
+1. **Critical** — Security vulnerabilities, data loss risks, breaking changes
+2. **Important** — Bugs, performance issues, error handling gaps
+3. **Suggestions** — Style, naming, simplification opportunities
 
-For each competitor: funding, traction, strengths, weaknesses.
+For each issue:
+- File and line reference
+- What's wrong and why it matters
+- Concrete fix suggestion
+
+End with: **Recommendation** — Approve / Request changes / Needs discussion
 ---
 
-Triggers: "competitive analysis", "who are the competitors"
+Triggers: "review this", "code review", "check this PR"
 
-Add to library as 'competitive-analysis'? [Y/n]
+Add to library as 'code-review'? [Y/n]
 ```
 
 ### Example: Proactive Offer
@@ -150,22 +152,26 @@ Prompts are stored in YAML:
 
 ```yaml
 prompts:
-  - id: competitive-analysis
-    name: "Competitive Analysis"
-    description: "Landscape analysis with positioning and strategic implications"
+  - id: code-review
+    name: "Code Review"
+    description: "Structured PR review with severity levels and actionable feedback"
     prompt: |
-      Analyze the competitive landscape for [PRODUCT] in [MARKET].
+      Review [CODE/PR] with focus on:
 
-      Structure:
-      1. Direct competitors (same solution, same customer)
-      2. Indirect competitors (different solution, same problem)
-      3. Feature comparison matrix
-      4. Positioning map (2x2)
-      5. Strategic implications
+      1. **Critical** — Security vulnerabilities, data loss risks, breaking changes
+      2. **Important** — Bugs, performance issues, error handling gaps
+      3. **Suggestions** — Style, naming, simplification opportunities
+
+      For each issue:
+      - File and line reference
+      - What's wrong and why it matters
+      - Concrete fix suggestion
+
+      End with: **Recommendation** — Approve / Request changes / Needs discussion
     triggers:
-      - "competitive analysis"
-      - "who are the competitors"
-      - "competitor landscape"
+      - "review this"
+      - "code review"
+      - "check this PR"
     created: 2026-02-05
 ```
 
