@@ -25,11 +25,11 @@ Output: Either a new library entry (distill), matched suggestions (match), or pr
 <context>
 Mode: $ARGUMENTS (defaults to "distill" if not specified)
 
-**Prompt library location:** @00-system/prompt-library.yaml
+**Prompt library location:** `/Users/harryparkes/github/ea/00-system/prompt-library.yaml`
 
 **User context sources** (read to inform prompt style):
 - `@CLAUDE.md` — User profile, communication preferences, key frameworks
-- `@00-system/user-profile.yaml` — Strategic pillars, thinking patterns, preferences
+- `/Users/harryparkes/github/ea/00-system/user-profile.yaml` — Strategic pillars, thinking patterns, preferences
 </context>
 
 <user_context_integration>
@@ -111,7 +111,7 @@ Want me to distill this into a reusable prompt for your library?
 
 0. **Read user preferences:**
    - Read `CLAUDE.md` for communication style, role context, key frameworks
-   - Read `00-system/user-profile.yaml` for strategic pillars and preferences
+   - Read `/Users/harryparkes/github/ea/00-system/user-profile.yaml` for strategic pillars and preferences
    - Note: direct communication, commercially-minded, uses Thor Mitchell framework, portfolio thinking
    - These inform how the distilled prompt should be written
 
@@ -154,7 +154,7 @@ Want me to distill this into a reusable prompt for your library?
    - Ask: "Does this capture the essence? Any adjustments?"
 
 6. **Write to library:**
-   - Read current `00-system/prompt-library.yaml`
+   - Read current `/Users/harryparkes/github/ea/00-system/prompt-library.yaml`
    - Generate a short, descriptive ID (kebab-case)
    - Append the new entry
    - Confirm addition
@@ -162,7 +162,7 @@ Want me to distill this into a reusable prompt for your library?
 ## Mode: Match
 
 1. **Load the library:**
-   - Read `00-system/prompt-library.yaml`
+   - Read `/Users/harryparkes/github/ea/00-system/prompt-library.yaml`
 
 2. **Compare against current input:**
    - Check trigger keywords against the user's message
@@ -201,7 +201,7 @@ Want me to distill this into a reusable prompt for your library?
 </process>
 
 <library_format>
-Entries in `00-system/prompt-library.yaml` follow this structure:
+Entries in `/Users/harryparkes/github/ea/00-system/prompt-library.yaml` follow this structure:
 
 ```yaml
 prompts:
