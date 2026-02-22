@@ -54,32 +54,54 @@ When distilling prompts, incorporate the user's known preferences:
 <proactive_detection>
 ## When to Offer Help (Proactive Mode)
 
+> **Important:** Proactive mode requires a snippet in your project's `CLAUDE.md` so Claude
+> can detect patterns during normal conversation. See `proactive-snippet.md` for setup.
+> Without this, proactive mode only works when `/promptly` is explicitly invoked.
+
 **Trigger signals** — offer to capture when you notice:
+
+*Iteration patterns (high confidence):*
+- 2+ rounds refining the same output ("try it as a table", "add X section", "make it shorter")
+- Explicit pivots that reveal the real intent ("actually, what I really want is...")
+- User asking to restructure or reformat something they just got
+- Adding/removing sections to an output iteratively
+
+*Satisfaction signals (trigger after iteration):*
+- Explicit satisfaction after refinement ("yes, that's it", "perfect", "exactly what I need")
+- User copying or saving the output after multiple rounds
+- User saying they'll reuse this format ("I'll use this template", "this is my go-to")
+
+*Exploration patterns (moderate confidence — wait for satisfaction signal):*
 - 3+ clarification rounds on the same topic
-- User iterating on output format ("try it as a table", "add X section")
-- Explicit pivots ("actually, what I really want is...")
-- Successful output after extended exploration
-- User expressing satisfaction after iteration ("yes, that's it")
+- Successful output after extended back-and-forth
+- User building up a complex prompt through multiple messages
 
 **How to interject:**
+
+Use AskUserQuestion to present the offer clearly:
+
 ```
 ---
-This looks like a prompt pattern worth capturing. Want me to distill it for reuse?
+I noticed you iterated on this a few times to get it right — this might be worth saving as a reusable prompt.
 
-What I noticed:
-- Initial ask: [what they started with]
-- Key refinements: [what changed]
-- Final form: [what worked]
+What I observed:
+- Started with: [initial ask]
+- Refined: [what changed across iterations]
+- Landed on: [the format/structure that worked]
 
-[Yes, capture it] [No, just continue]
+Want me to distill this into a reusable prompt for your library?
+
+[Yes, capture it] [No thanks]
 ---
 ```
 
 **When NOT to interject:**
-- Executing a predefined plan (like this consolidation task)
-- Simple Q&A exchanges
-- Debugging or troubleshooting sessions
+- Executing a predefined plan or checklist
+- Simple Q&A exchanges (single question, single answer)
+- Debugging or troubleshooting sessions (fixing bugs, reading errors)
 - When user is clearly in a hurry or frustrated
+- First iteration on something — wait for the refinement loop
+- User already declined a proactive offer in this conversation
 </proactive_detection>
 
 <process>
@@ -156,22 +178,26 @@ What I noticed:
 
 ## Mode: Proactive (mid-conversation)
 
-**When to trigger:** Claude should offer this when detecting exploratory patterns (see `<proactive_detection>` section above).
+**When to trigger:** Claude detects exploratory patterns during normal conversation. Requires the proactive snippet in `CLAUDE.md` (see `proactive-snippet.md`).
 
-1. **Recognize the pattern:**
-   - Multiple iterations on the same output
-   - Format refinements
-   - "Actually what I want is..." pivots
-   - Satisfaction signals after iteration
+1. **Track the conversation shape:**
+   - Count refinement rounds on the same topic
+   - Note format changes, section additions/removals, structural pivots
+   - Watch for the "aha" moment — when the user's real intent becomes clear
 
-2. **Offer to capture:**
-   - Brief summary of the pattern observed
-   - Ask if user wants to distill
-   - Respect "no" — continue without further prompting
+2. **Evaluate confidence before interjecting:**
+   - **High confidence** (interject immediately): 2+ format iterations + satisfaction signal
+   - **Moderate confidence** (wait for satisfaction): extended exploration without clear satisfaction
+   - **Low confidence** (don't interject): single iteration, debugging, Q&A
 
-3. **If yes, proceed to Distill mode**
+3. **Offer to capture:**
+   - Summarize what you observed (initial ask → refinements → final form)
+   - Use AskUserQuestion to ask clearly
+   - Keep it brief — don't interrupt the user's flow with a wall of text
 
-4. **If no, note it and don't re-offer** for this conversation thread
+4. **If yes:** Proceed to Distill mode (Phase 0 onward)
+
+5. **If no:** Acknowledge and continue. Do not re-offer in this conversation thread.
 </process>
 
 <library_format>

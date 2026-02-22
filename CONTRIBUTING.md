@@ -25,15 +25,25 @@ Thanks for your interest in improving Promptly!
 - Add edge case handling
 - Fix typos or clarify documentation
 
-## Skill Structure
+## Project Structure
 
-The skill is a single markdown file with:
+| File | Purpose |
+|------|---------|
+| `promptly.md` | The skill — loaded when `/promptly` is invoked |
+| `proactive-snippet.md` | CLAUDE.md snippet — enables always-on pattern detection |
+| `README.md` | User-facing documentation |
+| `CONTRIBUTING.md` | This file |
+
+### Skill sections
+
+The skill (`promptly.md`) is a single markdown file with:
 
 | Section | Purpose |
 |---------|---------|
 | `---` frontmatter | Name, description, allowed tools |
 | `<objective>` | What the skill does |
 | `<context>` | File paths and variables |
+| `<proactive_detection>` | Rules for when to offer prompt capture |
 | `<process>` | Step-by-step instructions for Claude |
 | `<examples>` | Show expected behavior |
 | `<edge_cases>` | Handle unusual situations |
