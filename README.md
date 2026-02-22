@@ -28,11 +28,13 @@ Next time you start a similar task, it offers your refined version.
 
 ### Proactive Detection
 
+> **Requires setup:** Add the proactive snippet to your `CLAUDE.md` — see [Setup](#2-enable-proactive-mode-recommended).
+
 Promptly notices when you're in an exploratory pattern:
-- 3+ clarification rounds on the same topic
-- Format iterations ("try it as a table", "add X section")
-- Pivots ("actually, what I really want is...")
-- Satisfaction signals ("yes, that's exactly it")
+- 2+ rounds refining the same output (format changes, restructuring, adding sections)
+- Pivots that reveal real intent ("actually, what I really want is...")
+- Satisfaction after iteration ("yes, that's it", "perfect", "exactly what I need")
+- Reuse signals ("I'll use this template going forward")
 
 When detected, it offers to capture — no need to remember to run `/promptly`.
 
@@ -59,7 +61,7 @@ cp promptly/promptly.md ~/.claude/commands/
 
 ## Setup
 
-Create a prompt library file in your project:
+### 1. Create a prompt library
 
 ```yaml
 # 00-system/prompt-library.yaml
@@ -68,6 +70,32 @@ prompts: []
 ```
 
 If you use a different location, update the path in `promptly.md` (line 28).
+
+### 2. Enable proactive mode (recommended)
+
+The `/promptly` skill only loads when you invoke it. For Claude to *proactively* detect prompt-worthy patterns during normal conversation, add a lightweight snippet to your `CLAUDE.md`.
+
+**Global (works in every project — recommended):**
+
+```bash
+# Append the snippet to your global CLAUDE.md
+sed -n '/<!-- promptly:proactive-start -->/,/<!-- promptly:proactive-end -->/p' \
+  proactive-snippet.md >> ~/.claude/CLAUDE.md
+```
+
+**Per-project:**
+
+```bash
+# Append to a specific project's CLAUDE.md
+sed -n '/<!-- promptly:proactive-start -->/,/<!-- promptly:proactive-end -->/p' \
+  proactive-snippet.md >> /path/to/project/CLAUDE.md
+```
+
+Or manually copy the snippet from [`proactive-snippet.md`](proactive-snippet.md). See that file for the full snippet content.
+
+This tells Claude *when* to suggest `/promptly` — the skill itself handles the rest.
+
+Without this step, proactive mode won't trigger and you'll need to remember to run `/promptly` manually after exploratory conversations.
 
 ## Usage
 
