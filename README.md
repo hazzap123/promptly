@@ -73,14 +73,25 @@ If you use a different location, update the path in `promptly.md` (line 28).
 
 ### 2. Enable proactive mode (recommended)
 
-The `/promptly` skill only loads when you invoke it. For Claude to *proactively* detect prompt-worthy patterns during normal conversation, add a lightweight snippet to your `CLAUDE.md`:
+The `/promptly` skill only loads when you invoke it. For Claude to *proactively* detect prompt-worthy patterns during normal conversation, add a lightweight snippet to your `CLAUDE.md`.
+
+**Global (works in every project — recommended):**
 
 ```bash
-# Copy the snippet to your clipboard, then paste it into your CLAUDE.md
-cat promptly/proactive-snippet.md
+# Append the snippet to your global CLAUDE.md
+sed -n '/<!-- promptly:proactive-start -->/,/<!-- promptly:proactive-end -->/p' \
+  proactive-snippet.md >> ~/.claude/CLAUDE.md
 ```
 
-Or manually copy the snippet from [`proactive-snippet.md`](proactive-snippet.md) into your project's `CLAUDE.md` (or global `~/.claude/CLAUDE.md`).
+**Per-project:**
+
+```bash
+# Append to a specific project's CLAUDE.md
+sed -n '/<!-- promptly:proactive-start -->/,/<!-- promptly:proactive-end -->/p' \
+  proactive-snippet.md >> /path/to/project/CLAUDE.md
+```
+
+Or manually copy the snippet from [`proactive-snippet.md`](proactive-snippet.md). See that file for the full snippet content.
 
 This tells Claude *when* to suggest `/promptly` — the skill itself handles the rest.
 

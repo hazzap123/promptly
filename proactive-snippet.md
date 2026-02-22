@@ -1,14 +1,29 @@
 # Promptly: Proactive Snippet
 
-Add the following to your project's `CLAUDE.md` (or global `~/.claude/CLAUDE.md`) to enable proactive prompt capture.
+Add the following snippet to enable proactive prompt capture — so Claude detects
+exploratory patterns during normal conversation and suggests running `/promptly`.
 
-This gives Claude the awareness to detect exploratory patterns during normal conversation and suggest running `/promptly`.
+## Installation
 
----
+### Global (recommended — works in every project)
 
-## Snippet
+```bash
+# Extract just the snippet and append it to your global CLAUDE.md
+sed -n '/<!-- promptly:proactive-start -->/,/<!-- promptly:proactive-end -->/p' \
+  proactive-snippet.md >> ~/.claude/CLAUDE.md
+```
 
-Copy everything between the `<!-- promptly -->` markers into your `CLAUDE.md`:
+### Per-project
+
+```bash
+# Append to a specific project's CLAUDE.md
+sed -n '/<!-- promptly:proactive-start -->/,/<!-- promptly:proactive-end -->/p' \
+  proactive-snippet.md >> /path/to/project/CLAUDE.md
+```
+
+### Manual
+
+Copy everything between the `<!-- promptly -->` markers below into your `CLAUDE.md`:
 
 ```markdown
 <!-- promptly:proactive-start -->
