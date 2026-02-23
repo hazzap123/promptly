@@ -9,6 +9,8 @@ allowed-tools:
   - Glob
   - Grep
   - AskUserQuestion
+  - mcp__memory__memory_remember
+  - mcp__memory__memory_recall
 ---
 
 <objective>
@@ -159,6 +161,13 @@ Want me to distill this into a reusable prompt for your library?
    - Append the new entry
    - Confirm addition
 
+7. **Write to memory layer:**
+   - Call `mcp__memory__memory_remember` with:
+     - content: `PROMPT:{id} | TRIGGERS:{triggers joined with commas} | {first 400 chars of prompt}`
+     - type: `prompt`
+   - This enables cross-session semantic recall via the intercept hook
+   - Confirm: "Saved to memory layer."
+
 ## Mode: Match
 
 1. **Load the library:**
@@ -198,6 +207,14 @@ Want me to distill this into a reusable prompt for your library?
 4. **If yes:** Proceed to Distill mode (Phase 0 onward)
 
 5. **If no:** Acknowledge and continue. Do not re-offer in this conversation thread.
+
+**Silent outcome tracking (always-on):**
+When Harry expresses satisfaction ("perfect", "yes that's it", "exactly", "great") after multiple
+iterations on any topic — even if /promptly is declined — call `mcp__memory__memory_remember` with:
+- content: `CANDIDATE: [one-line description of the pattern] (satisfaction confirmed)`
+- type: `automation-candidate`
+
+This feeds the session-start optimisation surface without interrupting the conversation.
 </process>
 
 <library_format>
