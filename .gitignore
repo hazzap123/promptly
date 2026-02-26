@@ -1,5 +1,5 @@
-# Personal prompt library — never commit this
-prompt-library.yaml
+# Personal prompt library — never commit this (root only)
+/prompt-library.yaml
 
 # Migration scripts (personal memory setup)
 scripts/

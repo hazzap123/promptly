@@ -1,0 +1,132 @@
+# Example Prompt Library
+# Copy this file to your project root as prompt-library.yaml
+# Then note the location in your CLAUDE.md:
+#   Prompt library: ./prompt-library.yaml
+#
+# Add your own prompts using /promptly, or seed from these examples.
+
+prompts:
+  - id: picard-mode
+    name: "Picard mode — truth over validation"
+    description: "Forces honest critique of a claim, plan, or piece of work. No softening, no sycophancy. First duty is to the truth."
+    prompt: |
+      Enter Picard mode. Your first duty is to the truth.
+
+      Review [CONTENT/CLAIM/PLAN]:
+
+      1. **Factual accuracy** — Identify every claim that is overstated, imprecise, or not defensible. Flag it with a suggested correction. If uncertain, say so explicitly — do not paper over it.
+
+      2. **Assumption check** — What am I treating as fact that is actually assumption? Where am I confusing confidence with evidence?
+
+      3. **Self-serving framing** — Where might I be telling myself what I want to hear? What's the version of this that a sceptic would say?
+
+      4. **What's actually true** — State it plainly, even if it contradicts my framing.
+
+      Do not validate. Do not soften. Do not lead with what's good before what's wrong.
+      If something is wrong, say so first.
+
+      "The first duty of every officer is to the truth." — Jean-Luc Picard
+    triggers:
+      - "picard mode"
+      - "be honest with me"
+      - "challenge this"
+      - "don't validate"
+      - "truth check"
+      - "am I fooling myself"
+      - "steelman against this"
+      - "what am I missing"
+    created: YYYY-MM-DD
+
+  - id: belief-reframe
+    name: "Belief reframing process"
+    description: "4-step structured process to surface, challenge, replace, and sustain a new belief"
+    prompt: |
+      Run me through the belief reframing process for [BELIEF or SITUATION].
+
+      Step 1 — Map the belief
+      State the belief clearly as I've been holding it. Reflect back any framing I'm not hearing myself say. Is this belief helping or hindering me? What's keeping it in place — mindset, values, environment, social circle?
+
+      Step 2 — Challenge with evidence
+      What evidence supports this belief? What challenges it? On balance, is it actually true? Goal: sow enough doubt to create the opening for change.
+
+      Step 3 — Replace
+      What's a more useful belief that, if true, would move me closer to my goals? State it clearly. This is what I tell the inner critic when it pipes up.
+
+      Step 4 — Sustain
+      What in my current system of belief needs to change for the new belief to hold? (Environment, people, habits, rituals.) What's the one concrete change to make this stick?
+
+      Be direct. Push back if my framing is self-serving. This is coaching, not validation.
+    triggers:
+      - "belief"
+      - "reframe"
+      - "limiting belief"
+      - "mindset shift"
+      - "inner critic"
+      - "I keep telling myself"
+      - "belief reframing"
+      - "head garbage"
+    created: YYYY-MM-DD
+
+  - id: content-review
+    name: "Publication content review"
+    description: "Structured review of content before publishing — factual accuracy first, then voice, structure, grammar."
+    prompt: |
+      Review [CONTENT] for publication. Work through these steps in order — do not skip:
+
+      Step 1 — Factual accuracy
+      Identify every factual claim — technical, market, competitive, or about a person/company. For each: is it accurate, precise, and defensible? If overstated, imprecise, or likely to attract legitimate pushback, flag it with a suggested fix. If uncertain, say so explicitly — do not paper over it. Do not move on until this is done.
+
+      Step 2 — Voice and authenticity
+      Does this sound like the author, or like AI output? Flag: formulaic structure, generic phrasing, one-line paragraph abuse, bullet lists masquerading as prose, hedging language, missing specificity.
+
+      Step 3 — Structure and argument
+      Does the argument land? Is the opening strong? Does the ending earn its place? Flag any logical gaps or unsupported jumps.
+
+      Step 4 — Grammar and typos
+      Clean pass for errors. Fix, don't just flag.
+
+      Output: issues grouped by step, each with a suggested fix. Be direct — this is editing, not validation.
+    triggers:
+      - "review this post"
+      - "review this for publication"
+      - "final review"
+      - "check this before I post"
+      - "proofread"
+      - "review this article"
+      - "content review"
+    created: YYYY-MM-DD
+
+  - id: strategic-landscape-paper
+    name: "Strategic landscape paper"
+    description: "2-3 page paper mapping a domain for a senior stakeholder — landscape, structural gaps, what's changing, sector tensions, strategic challenges. Map, don't solve. Earns the next meeting."
+    prompt: |
+      Map the [DOMAIN/MARKET] space for [STAKEHOLDER — name, role, context]. Written from the perspective of [PERSONA — e.g., non-exec of a major retailer].
+
+      Structure (2-3 pages):
+
+      1. **The Landscape Today** — Table format: Domain | Description | Key players | The issue. Cover every layer of the current stack. End with the central gap: what decision or capability falls between all these layers with no owner?
+
+      2. **Why the Gap Exists** — Structural causes, not symptoms. Lead with the root cause (what was the original constraint the industry organised around, and why didn't it translate?). Treat fragmented ownership as a symptom of deeper architectural or ontological issues, not as a standalone explanation.
+
+      3. **What Changes Now** — Two parts: (a) the forcing function that makes the gap commercially urgent NOW, and (b) the enabling technology that makes filling it feasible. Be precise about what's live vs forecast. Acknowledge what the technology actually changes (economics, prerequisites) vs what it doesn't solve (incentives, standards, coordination).
+
+      4. **Sector-Specific Dynamics** — 2-3 tensions unique to [SECTOR] that differentiate this from generic analysis. Each should be a genuine structural tension, not a restatement of the gap.
+
+      5. **Strategic Challenges** — Board/C-suite level. Frame as: organisational, channel, competitive (disintermediation), and architectural. Each challenge ends with a question for the board, not a recommendation.
+
+      6. **Implications** — One paragraph. Name the type of gap (technology? coordination? capability?). Point to the strategic questions that follow. Offer to go deeper. Do not prescribe.
+
+      Rules:
+      - Map, don't solve. The paper earns the next meeting.
+      - Source all facts or remove specific numbers. Directional language ("declining year-on-year") over unsourced precision ("fell from X to Y").
+      - Peer-level tone. No pitch. No sycophancy.
+      - Challenge your own framing: for each "why the gap exists" thesis, ask "could someone credibly disagree?" If yes, address the counter.
+    triggers:
+      - "map the space"
+      - "landscape paper"
+      - "map the problem space"
+      - "strategic landscape"
+      - "who does what in"
+      - "client paper"
+      - "map the market"
+    created: YYYY-MM-DD
