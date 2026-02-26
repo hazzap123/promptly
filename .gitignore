@@ -1,0 +1,5 @@
+# Personal prompt library — never commit this
+prompt-library.yaml
+
+# OS
+.DS_Store
