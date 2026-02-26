@@ -1,5 +1,8 @@
 # Personal prompt library — never commit this
 prompt-library.yaml
 
+# Migration scripts (personal memory setup)
+scripts/
+
 # OS
 .DS_Store
