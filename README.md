@@ -63,11 +63,22 @@ cp promptly/promptly.md ~/.claude/commands/
 
 ### 1. Create a prompt library
 
+Start from scratch:
+
 ```yaml
 # prompt-library.yaml
 
 prompts: []
 ```
+
+Or copy the example library to get started immediately:
+
+```bash
+curl -o prompt-library.yaml \
+  https://raw.githubusercontent.com/hazzap123/promptly/main/examples/prompt-library.yaml
+```
+
+This includes four ready-to-use prompts: Picard mode (truth over validation), belief reframing, content review, and strategic landscape mapping.
 
 Place it in your project root, or wherever you prefer. If you use a different location, note it in your `CLAUDE.md` — Promptly will discover it automatically.
 
@@ -252,6 +263,10 @@ No Bash, no web access, no subagent spawning.
 ## Requirements
 
 - [Claude Code](https://claude.ai/code) CLI
+
+## Contributing
+
+Issues, prompt examples, and improvements welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
