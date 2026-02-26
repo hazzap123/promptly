@@ -64,12 +64,12 @@ cp promptly/promptly.md ~/.claude/commands/
 ### 1. Create a prompt library
 
 ```yaml
-# 00-system/prompt-library.yaml
+# prompt-library.yaml
 
 prompts: []
 ```
 
-If you use a different location, update the path in `promptly.md` (line 28).
+Place it in your project root, or wherever you prefer. If you use a different location, note it in your `CLAUDE.md` — Promptly will discover it automatically.
 
 ### 2. Enable proactive mode (recommended)
 
@@ -200,23 +200,23 @@ prompts:
       - "review this"
       - "code review"
       - "check this PR"
-    created: 2026-02-05
+    created: YYYY-MM-DD
 ```
 
 ## Customization
 
 ### Library Location
 
-Default: `00-system/prompt-library.yaml`
+Default: `prompt-library.yaml` in the project root.
 
-Change by editing line 28 in `promptly.md`:
+Override by adding a line to your `CLAUDE.md`:
 ```
-**Prompt library location:** @your/preferred/path.yaml
+Prompt library: ./path/to/prompt-library.yaml
 ```
 
 ### User Context
 
-Promptly reads from `CLAUDE.md` and `00-system/user-profile.yaml` to personalize prompts. Document your:
+Promptly reads from `CLAUDE.md` and `user-profile.yaml` (if present) to personalise prompts. Document your:
 - Communication preferences
 - Frameworks you use
 - Domain vocabulary

@@ -4,5 +4,8 @@ prompt-library.yaml
 # Migration scripts (personal memory setup)
 scripts/
 
+# Claude Code local settings
+.claude/
+
 # OS
 .DS_Store

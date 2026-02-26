@@ -34,7 +34,7 @@ Claude operates as a continuously self-optimising system. These rules apply in e
 ### Prompt Interception (A — match)
 When the session-start context or UserPromptSubmit hook surfaces a `[Promptly]` match suggestion,
 acknowledge it before executing: "Your library has a refined version — want to use it?"
-If Harry says yes, load and use the stored version. If no, proceed and note the deviation.
+If yes, load and use the stored version. If no, proceed and note the deviation.
 
 ### Prompt Critique (B — improve)
 Before executing a prompt that is clearly underspecified for its complexity:
@@ -43,17 +43,16 @@ Before executing a prompt that is clearly underspecified for its complexity:
 - Don't ask — just improve it and state what you changed.
 
 ### Outcome Tracking (C — learn)
-When Harry expresses satisfaction ("perfect", "yes that's it", "exactly", "great") after 2+ iterations:
-- Silently call `mcp__memory__memory_remember` with type=`automation-candidate`:
-  `CANDIDATE: [one-line description] (satisfaction confirmed [date])`
-- Do not interrupt or announce this. Just write it.
+When the user expresses satisfaction ("perfect", "yes that's it", "exactly", "great") after 2+ iterations:
+- Note the pattern. If it recurs, proactively offer to capture it with `/promptly`.
+- Do not interrupt or announce this observation.
 
 ### Automation Suggestion (D — grow)
 When you notice the same manual action recurring:
 - 2nd time in a session: note it mentally
 - 3rd time in a session OR 2nd session in a row: "You've done [X] manually [N] times. I can build a skill or hook for this — want me to?"
 - If yes: build it immediately. Don't defer.
-- If no: write it as an automation-candidate in memory anyway.
+- If no: note it and watch for recurrence.
 
 ### What counts as a recurring manual action:
 - Asking for the same type of analysis repeatedly (competitive, market sizing, prep)
@@ -67,7 +66,7 @@ When you notice the same manual action recurring:
 - Don't suggest a skill for something done once
 - Don't announce the memory writes
 
-**Promptly integration:** After producing output Harry is happy with (2+ iterations), suggest `/promptly`
+**Promptly integration:** After producing output the user is happy with (2+ iterations), suggest `/promptly`
 to capture it as a reusable prompt. One suggestion per conversation. Drop it if declined.
 <!-- promptly:proactive-end -->
 ```
